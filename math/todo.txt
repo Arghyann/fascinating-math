@@ -1,2 +1,4 @@
 1) Define the function
 2) Define the newtons method function
+3)fatou sets next?
+5)fourier transform to draw stuff
