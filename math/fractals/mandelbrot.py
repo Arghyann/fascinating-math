@@ -16,11 +16,11 @@ for i in range(resolution):
             if(np.abs(z)>2):
                 image[i][j]=k
                 break
-            z = (np.abs(z.real) + 1j * np.abs(z.imag))**2 + grid[i][j]              #edit the function here
+            z = z**2 + grid[i][j]              #edit the function here
 plt.figure(figsize=(10,10))
 
 plt.imshow(image, extent=(xcords.min(),xcords.max(),ycords.min(),ycords.max()))
-        
+plt.colorbar(label="number of iterations before blowing up")       
         
 plt.xlabel('Real')
 plt.ylabel('Imaginary')
