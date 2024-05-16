@@ -1,8 +1,8 @@
 #generate a simple black and white mandelbrot set
 import numpy as np
 import matplotlib.pyplot as plt
-iterations=50
-resolution=1000
+iterations=100
+resolution=2000
 
 image = np.full((resolution, resolution), iterations)
 xcords=np.linspace(-2,2,resolution)
@@ -16,7 +16,7 @@ for i in range(resolution):
             if(np.abs(z)>2):
                 image[i][j]=k
                 break
-            z=z**2+grid[i][j]
+            z = (np.abs(z.real) + 1j * np.abs(z.imag))**2 + grid[i][j]              #edit the function here
 plt.figure(figsize=(10,10))
 
 plt.imshow(image, extent=(xcords.min(),xcords.max(),ycords.min(),ycords.max()))
