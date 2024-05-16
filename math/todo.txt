@@ -1,0 +1,2 @@
+1) Define the function
+2) Define the newtons method function
