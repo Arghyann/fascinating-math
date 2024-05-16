@@ -1,4 +1,4 @@
-#give it some time to compute. It iterates over 250000 pixels over a lot of iterations
+#give it some time to compute. It iterates over 250000 pixels, one by one, over a lot of iterations
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,10 +10,10 @@ class fractal:
         self.rootsArray = []
         self.colour = []
 
-    def f(self, z):
-        function = (z**3) -(2*z) +2
-        self.rootsArray = np.roots([1,0,-2,+2])  #takes in the polnomial as an array of coefficients
-        for i in range(len(self.rootsArray)):
+    def f(self, z):                                  #original function
+        function = (z**6) -1           
+        self.rootsArray = np.roots([1,0,0,0,0,0,-1])  #takes in the polnomial as an array of coefficients
+        for i in range(len(self.rootsArray)):    #change it if you also change the function
             red = random.uniform(0, 1)
             blue = random.uniform(0, 1)
             green = random.uniform(0, 1)
@@ -21,7 +21,7 @@ class fractal:
         return function
         
     def fDer(self,z):
-        return 3*(z**2) -2                   #and here to change the function
+        return 6*(z**5)                  #and here to change the function(derivative of the function)
 
 
     def assignColour(self,imag):
