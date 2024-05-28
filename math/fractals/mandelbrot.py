@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 iterations=100
-resolution=8000
+resolution=1000
 
 image = np.full((resolution, resolution), iterations)
 xcords=np.linspace(-2,2,resolution)
