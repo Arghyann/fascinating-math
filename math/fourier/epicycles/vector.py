@@ -4,7 +4,7 @@ import matplotlib.animation as ani
 from matplotlib.patches import FancyArrow
 
 class Vector:
-    def __init__(self, coeff, omega,previous=None):
+    def __init__(self, coeff, omega,previous=None,is_last=False):
         self.previous=previous
         if self.previous is not None:
             self.baseCords=self.previous.getHeadPosition(0)
@@ -13,6 +13,8 @@ class Vector:
         self.coeff=coeff
         self.omega = omega
         self.head_position=0
+        self.is_last=is_last
+        self.positions=[]
 
     def getHeadPosition(self,t):
         if self.previous is not None: self.baseCords=self.previous.head_position
@@ -30,7 +32,12 @@ class Vector:
                            head_width=0.1, head_length=0.2, fc='r', ec='r',
                            length_includes_head=True)
         ax.add_patch(arrow)
-
+        if self.is_last:
+                if current_position not in self.positions:
+                    self.positions.append(current_position)
+                if len(self.positions) > 1:
+                    trajectory = np.array(self.positions)
+                    ax.plot(np.real(trajectory), np.imag(trajectory), color='blue')
 
 
 
