@@ -1,38 +1,50 @@
 import cv2
 import numpy as np
-import xml.etree.ElementTree as ET
+import svgwrite
 
-# Read the image
-image = cv2.imread(r'D:\fascinating-math\math\fourier\epicycles\output\IMG_1798.JPG')
+# Load the image
+img0 = cv2.imread(r'D:\fascinating-math\math\fourier\epicycles\output\QNNl8I01.svg')
 
-# Convert the image to grayscale
-gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+# Convert to grayscale
+gray = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
 
-# Threshold the image to get a binary image
-_, binary_image = cv2.threshold(gray_image, 128, 255, cv2.THRESH_BINARY_INV)
+# Resize the image
+resized = cv2.resize(gray, (190, 190))
 
-# Find contours in the binary image
-contours, _ = cv2.findContours(binary_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+# Apply blur
+blurred = cv2.GaussianBlur(resized, (5, 5), 0)  # Adjusted kernel size to (5, 5)
 
-# Create an SVG XML tree
-svg_tree = ET.Element('svg', xmlns="http://www.w3.org/2000/svg", version="1.1")
+# Binarize the image
+_, binary = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
-# Iterate over each contour
-for contour in contours:
-    # Convert contour to SVG format
-    path_data = 'M'
-    for point in contour.squeeze():
-        path_data += f'{point[0]},{point[1]} '
-    path_data += 'Z'
+# Delete small components
+nb_components, output, stats, _ = cv2.connectedComponentsWithStats(binary, connectivity=8)
+sizes = stats[:, -1]
+mask_sizes = sizes > 50
+mask_sizes[0] = 0
+binary_cleaned = np.zeros(output.shape)
+for i in range(1, nb_components):
+    if mask_sizes[i]:
+        binary_cleaned[output == i] = 255
 
-    # Create SVG path element
-    path_element = ET.Element('path', d=path_data, fill="none", stroke="black", stroke_width="1")
+# Extract contours
+contours, _ = cv2.findContours(binary_cleaned.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+pts = np.vstack(contours).squeeze()
 
-    # Add path element to SVG tree
-    svg_tree.append(path_element)
+# Center points
+center = np.mean(pts, axis=0)
+pts_centered = pts - center
 
-# Create SVG tree object
-svg_output = ET.ElementTree(svg_tree)
+# Create SVG file
+svg_file = 'output.svg'
+dwg = svgwrite.Drawing(svg_file, profile='tiny')
+
+# Define a group for the points
+points_group = dwg.add(dwg.g(id='points'))
+
+# Add points to the group
+for x, y in pts_centered:
+    points_group.add(dwg.circle(center=(x, y), r=0.5, fill='black'))
 
 # Save SVG file
-svg_output.write('output_outline.svg')
+dwg.save()
