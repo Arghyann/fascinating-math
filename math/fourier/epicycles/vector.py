@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as ani
+from matplotlib.patches import FancyArrow
 
 class Vector:
     def __init__(self, coeff, omega,previous=None):
@@ -21,11 +22,14 @@ class Vector:
     
     def drawVector(self, t, ax):
         current_position = self.getHeadPosition(t)
-        self.head_position = current_position
-        ax.arrow(np.real(self.baseCords), np.imag(self.baseCords),
-                 np.real(current_position) - np.real(self.baseCords),
-                 np.imag(current_position) - np.imag(self.baseCords),
-                 head_width=0.1, head_length=0.2, fc='r', ec='r')
+        dx = np.real(current_position) - np.real(self.baseCords)
+        dy = np.imag(current_position) - np.imag(self.baseCords)
+        length = np.sqrt(dx**2 + dy**2)
+        arrow = FancyArrow(np.real(self.baseCords), np.imag(self.baseCords),
+                           dx, dy,
+                           head_width=0.1, head_length=0.2, fc='r', ec='r',
+                           length_includes_head=True)
+        ax.add_patch(arrow)
 
 
 

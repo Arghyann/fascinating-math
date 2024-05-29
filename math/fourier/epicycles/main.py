@@ -20,7 +20,7 @@ def update(t):
 v1 = Vector(coeff=1, omega=2 * np.pi / 10)
 
 # Create a second vector with the first vector as its previous vector
-v2 = Vector(coeff=0.5, omega=-2 * np.pi / 20, previous=v1)
+v2 = Vector(coeff=1, omega=-2 * np.pi / 10, previous=v1)
 
 # List of vectors
 vectors = [v1, v2]
