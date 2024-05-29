@@ -1,4 +1,4 @@
 math/fourier/epicycles/output
 *.svg
 *.JPG
-
+math/fourier/epicycles/__pycache__
