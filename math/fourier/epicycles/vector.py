@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as ani
-from matplotlib.patches import FancyArrow
+import matplotlib.patches as patches
 
 class Vector:
     def __init__(self, coeff, omega,previous=None,is_last=False):
@@ -27,11 +27,13 @@ class Vector:
         dx = np.real(current_position) - np.real(self.baseCords)
         dy = np.imag(current_position) - np.imag(self.baseCords)
         length = np.sqrt(dx**2 + dy**2)
-        arrow = FancyArrow(np.real(self.baseCords), np.imag(self.baseCords),
+        arrow = patches.FancyArrow(np.real(self.baseCords), np.imag(self.baseCords),
                            dx, dy,
                            head_width=0.1, head_length=0.2, fc='r', ec='r',
                            length_includes_head=True)
         ax.add_patch(arrow)
+        #circle=patches.Circle((np.real(self.baseCords),np.imag(self.baseCords)),radius=length,edgecolor='g', facecolor='none')
+        #ax.add_patch(circle)      #uncomment to add the stupid circles
         if self.is_last:
                 if current_position not in self.positions:
                     self.positions.append(current_position)

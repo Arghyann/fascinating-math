@@ -14,7 +14,7 @@ class EpicycloidAnimator:
 
     def init_vectors(self):
         for i in range(self.num_vectors):
-            coeff = 0.5
+            coeff =1*np.exp(1j*np.pi/2)
             omega = np.random.uniform(-2*np.pi, 2*np.pi)
             is_last = (i == self.num_vectors - 1)
             v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[-1] if self.vectors else None)
@@ -23,8 +23,8 @@ class EpicycloidAnimator:
     def update(self, frame):
         self.ax.clear()  # Clear the axes
         self.ax.set_aspect('equal')
-        self.ax.set_xlim(-10, 10)
-        self.ax.set_ylim(-10, 10)
+        self.ax.set_xlim(-10,10)
+        self.ax.set_ylim(-10,10)
         self.ax.set_xlabel('Real')
         self.ax.set_ylabel('Imaginary')
         self.ax.set_title('Chained Vectors in Complex Plane')
@@ -46,8 +46,4 @@ class EpicycloidAnimator:
 
         plt.show()
 
-# Create an instance of EpicycloidAnimator
-epicycloid_animator = EpicycloidAnimator(num_vectors=100, total_time=1000, num_frames=100000)
 
-# Start animation
-epicycloid_animator.animate()

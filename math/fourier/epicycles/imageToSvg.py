@@ -1,50 +1,29 @@
 import cv2
 import numpy as np
-import svgwrite
+import matplotlib.pyplot as plt
 
 # Load the image
-img0 = cv2.imread(r'D:\fascinating-math\math\fourier\epicycles\output\QNNl8I01.svg')
+img0 = cv2.imread(r'D:\fascinating-math\math\fourier\epicycles\output\IMG_1798.JPG')
 
-# Convert to grayscale
-gray = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
-
-# Resize the image
-resized = cv2.resize(gray, (190, 190))
-
-# Apply blur
-blurred = cv2.GaussianBlur(resized, (5, 5), 0)  # Adjusted kernel size to (5, 5)
+# Convert to grayscale and resize
+img_gray = cv2.cvtColor(img0, cv2.COLOR_BGR2GRAY)
+img_resized = cv2.resize(img_gray, (190, 190))
 
 # Binarize the image
-_, binary = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+_, img_binary = cv2.threshold(img_resized, 15, 255, cv2.THRESH_BINARY)
 
-# Delete small components
-nb_components, output, stats, _ = cv2.connectedComponentsWithStats(binary, connectivity=8)
-sizes = stats[:, -1]
-mask_sizes = sizes > 50
-mask_sizes[0] = 0
-binary_cleaned = np.zeros(output.shape)
-for i in range(1, nb_components):
-    if mask_sizes[i]:
-        binary_cleaned[output == i] = 255
+# Find contours
+contours, _ = cv2.findContours(img_binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-# Extract contours
-contours, _ = cv2.findContours(binary_cleaned.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-pts = np.vstack(contours).squeeze()
+# Extract contour points
+pts = []
+for contour in contours:
+    pts.extend(contour.squeeze())
 
-# Center points
-center = np.mean(pts, axis=0)
-pts_centered = pts - center
+# Convert points to NumPy array
+pts = np.array(pts)
 
-# Create SVG file
-svg_file = 'output.svg'
-dwg = svgwrite.Drawing(svg_file, profile='tiny')
-
-# Define a group for the points
-points_group = dwg.add(dwg.g(id='points'))
-
-# Add points to the group
-for x, y in pts_centered:
-    points_group.add(dwg.circle(center=(x, y), r=0.5, fill='black'))
-
-# Save SVG file
-dwg.save()
+# Plot the points
+plt.plot(pts[:, 0], pts[:, 1], '.')
+plt.gca().set_aspect('equal', adjustable='box')
+plt.show()
