@@ -4,18 +4,18 @@ import matplotlib.animation as animation
 from vector import Vector  
 
 class EpicycloidAnimator:
-    def __init__(self, num_vectors, total_time, num_frames):
+    def __init__(self, num_vectors, total_time, num_frames,outputfunction):
         self.num_vectors = num_vectors
         self.total_time = total_time
         self.num_frames = num_frames
         self.time_step = total_time / num_frames
         self.vectors = []
         self.fig, self.ax = plt.subplots()  # Create figure and axes
-
+        self.outputfunction=outputfunction
     def init_vectors(self):
         for i in range(self.num_vectors):
-            coeff =1*np.exp(1j*np.pi/2)
-            omega = np.random.uniform(-2*np.pi, 2*np.pi)
+            coeff =1
+            omega = np.random.uniform(-2*np.pi,2*np.pi)
             is_last = (i == self.num_vectors - 1)
             v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[-1] if self.vectors else None)
             self.vectors.append(v)
@@ -23,8 +23,8 @@ class EpicycloidAnimator:
     def update(self, frame):
         self.ax.clear()  # Clear the axes
         self.ax.set_aspect('equal')
-        self.ax.set_xlim(-10,10)
-        self.ax.set_ylim(-10,10)
+        self.ax.set_xlim(-25,25)
+        self.ax.set_ylim(-25,25)
         self.ax.set_xlabel('Real')
         self.ax.set_ylabel('Imaginary')
         self.ax.set_title('Chained Vectors in Complex Plane')
