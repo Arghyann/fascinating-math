@@ -2,22 +2,35 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from vector import Vector  
+from fourierTransform import ft,dft
 
 class EpicycloidAnimator:
-    def __init__(self, num_vectors, total_time, num_frames,outputfunction):
+    def __init__(self, num_vectors, total_time):
         self.num_vectors = num_vectors
         self.total_time = total_time
-        self.num_frames = num_frames
-        self.time_step = total_time / num_frames
+        
+        self.time_step = total_time / 2*np.pi/num_vectors
+        self.num_frames=total_time/self.time_step
         self.vectors = []
         self.fig, self.ax = plt.subplots()  # Create figure and axes
-        self.outputfunction=outputfunction
+        
     def init_vectors(self):
-        for i in range(self.num_vectors):
-            coeff =1
-            omega = np.random.uniform(-2*np.pi,2*np.pi)
+        y=[]
+        for z in range(100):
+            y.append(ft(z))
+        coeffs=[]
+        step_size=1/self.num_vectors
+        frequency_numbers = np.arange(-10, 10+step_size, step_size)[::-1]  #reversed because max frequency will have max amplitude
+
+        for frequencyNumber in frequency_numbers:
+            coeffs.append(dft(frequency=frequencyNumber,y=y))
+        
+        
+        for i in range(self.num_vectors-1):
+            coeff =coeffs[i]
+            omega =2*np.pi*frequency_numbers[i]
             is_last = (i == self.num_vectors - 1)
-            v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[-1] if self.vectors else None)
+            v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[i-1] if i!=0 else None)
             self.vectors.append(v)
 
     def update(self, frame):

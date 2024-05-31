@@ -35,11 +35,10 @@ class Vector:
         #circle=patches.Circle((np.real(self.baseCords),np.imag(self.baseCords)),radius=length,edgecolor='g', facecolor='none')
         #ax.add_patch(circle)      #uncomment to add the stupid circles
         if self.is_last:
-                if current_position not in self.positions:
-                    self.positions.append(current_position)
-                if len(self.positions) > 1:
-                    trajectory = np.array(self.positions)
-                    ax.plot(np.real(trajectory), np.imag(trajectory), color='blue')
+            
+            if len(self.positions) > 1:
+                trajectory = np.array(self.positions)
+                ax.plot(np.real(trajectory), np.imag(trajectory), color='blue', linestyle='-')  # Draw a solid line
 
 
 
