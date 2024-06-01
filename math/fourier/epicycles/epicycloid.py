@@ -44,9 +44,9 @@ class EpicycloidAnimator:
         self.ax.set_ylim(-1000,1000)
         self.ax.set_xlabel('Real')
         self.ax.set_ylabel('Imaginary')
-        self.ax.set_title('Chained Vectors in Complex Plane')
-        self.ax.grid(True)
-
+        self.ax.set_title('Chained Vectors in the Complex Plane')
+        
+        
         # Calculate time in seconds
         t = frame * self.time_step
         #print(t)
@@ -60,9 +60,10 @@ class EpicycloidAnimator:
         # Initialize vectors
         self.init_vectors()
         print(self.num_frames)
+        
         # Animate the plot
         ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=50)
-
+        
         plt.show()
 
 
