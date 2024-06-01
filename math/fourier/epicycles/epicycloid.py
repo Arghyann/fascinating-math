@@ -16,7 +16,8 @@ class EpicycloidAnimator:
         self.fig, self.ax = plt.subplots()  # Create figure and axes
         
     def init_vectors(self):
-        y=read_points_from_file(r"D:\fascinating-math\math\fourier\epicycles\output\cords.txt")
+        y=read_points_from_file(r"D:\fascinating-math\math\fourier\epicycles\output\cords.txt",1000)
+        print(y)
         coeffs=[]
         self.time_step=1/len(y)
         self.num_frames=self.total_time/self.time_step
@@ -24,14 +25,16 @@ class EpicycloidAnimator:
 
         for frequencyNumber in frequency_numbers:
             coeffs.append(dft(frequency=frequencyNumber,y=y))
+        print(coeffs)
+        print(frequency_numbers)
         
         
-        
-        for i in range(self.num_vectors-1):
+        for i in range(self.num_vectors):
             coeff =coeffs[i]
             omega =2*np.pi*frequency_numbers[i]
             is_last = (i == self.num_vectors - 1)
             v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[i-1] if i!=0 else None)
+            print(v.is_last)
             self.vectors.append(v)
 
     def update(self, frame):
@@ -58,7 +61,7 @@ class EpicycloidAnimator:
         self.init_vectors()
         print(self.num_frames)
         # Animate the plot
-        ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=5)
+        ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=50)
 
         plt.show()
 

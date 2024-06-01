@@ -19,6 +19,7 @@ class Vector:
         if self.previous is not None: self.baseCords=self.previous.head_position
         cords=self.baseCords+self.coeff*np.exp(1j*self.omega*t)
         self.head_position=cords          #updates head position every time fore better efficiency 
+        self.positions.append(cords)
         return cords
     
     def drawVector(self, t, ax):
