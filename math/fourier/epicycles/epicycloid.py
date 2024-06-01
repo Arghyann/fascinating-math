@@ -8,7 +8,7 @@ from svgtopoints import extract_points_from_svg
 import os
 import time
 class EpicycloidAnimator:
-    def __init__(self, num_vectors, total_time,path):
+    def __init__(self, num_vectors, total_time,path,show_circles):
         self.num_vectors = num_vectors
         self.total_time = total_time
         self.path=path
@@ -16,7 +16,8 @@ class EpicycloidAnimator:
         self.num_frames=total_time/self.time_step
         self.vectors = []
         self.fig, self.ax = plt.subplots()  # Create figure and axes
-        
+        self.max_zoom=1
+        self.showCircles=show_circles
     def init_vectors(self):
         _, file_extension = os.path.splitext(self.path)
         if file_extension.lower() == '.svg':
@@ -27,7 +28,7 @@ class EpicycloidAnimator:
         coeffs=[]
         self.time_step=1/len(y)
         self.num_frames=self.total_time/self.time_step
-        self.zoom_start_frame= self.num_frames//2             #most important things initilaised here
+        self.zoom_start_frame= self.num_frames//4            #most important things initilaised here
         self.zoom_end_frame=self.num_frames//2+self.num_frames//4
         frequency_numbers = np.arange(-self.num_vectors/2,self.num_vectors/2,1)  
 
@@ -41,7 +42,7 @@ class EpicycloidAnimator:
             coeff =coeffs[i]
             omega =2*np.pi*frequency_numbers[i]
             is_last = (i == self.num_vectors - 1)
-            v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[i-1] if i!=0 else None)
+            v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[i-1] if i!=0 else None,show_circles=self.showCircles)
             print(v.is_last)
             self.vectors.append(v)
 
@@ -68,15 +69,20 @@ class EpicycloidAnimator:
         for vec in self.vectors:
             vec.drawVector(t, self.ax)
             end_pos=vec.getHeadPosition(t)
+        
         if self.zoom_start_frame <= frame <= self.zoom_end_frame:
-            zoom_factor = (frame - self.zoom_start_frame) / (self.zoom_end_frame - self.zoom_start_frame)
-            zoom_level = self.initial_xlim - (self.initial_xlim - self.final_zoom_level) * zoom_factor
+            zoom_factor = (frame - self.zoom_start_frame) / (self.zoom_end_frame - self.zoom_start_frame)  #fraction to increase zoom gradually
+            zoom_level = self.initial_xlim - (self.initial_xlim -self.max_zoom) * zoom_factor   #max zoom is one here
             self.ax.set_xlim(end_pos.real - zoom_level, end_pos.real + zoom_level)
             self.ax.set_ylim(end_pos.imag - zoom_level, end_pos.imag + zoom_level)
+        elif frame>self.zoom_end_frame:
+            zoom_factor=(frame-self.zoom_end_frame)/(self.num_frames-self.zoom_end_frame)#zooms out more quickly
+            zoom_out_level=self.max_zoom+(self.initial_xlim-self.max_zoom)*zoom_factor
+            self.ax.set_xlim(end_pos.real - zoom_out_level, end_pos.real + zoom_out_level)
+            self.ax.set_ylim(end_pos.imag - zoom_out_level, end_pos.imag + zoom_out_level)
         else:
             self.ax.set_xlim(-self.initial_xlim, self.initial_xlim)
             self.ax.set_ylim(-self.initial_ylim, self.initial_ylim)
-
         
 
     def animate(self):

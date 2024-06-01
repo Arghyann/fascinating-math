@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.patches as patches
 
 class Vector:
-    def __init__(self, coeff, omega,previous=None,is_last=False):
+    def __init__(self, coeff, omega,previous=None,is_last=False,show_circles=False):
         self.previous=previous
         if self.previous is not None:
             self.baseCords=self.previous.getHeadPosition(0)
@@ -14,6 +14,7 @@ class Vector:
         self.head_position=0
         self.is_last=is_last
         self.positions=[]
+        self.showcircles=show_circles
 
     def getHeadPosition(self,t):
         if self.previous is not None: self.baseCords=self.previous.head_position
@@ -32,8 +33,9 @@ class Vector:
                            head_width=0.1, head_length=0.2, fc='r', ec='r',
                            length_includes_head=True)
         ax.add_patch(arrow)
-        #circle=patches.Circle((np.real(self.baseCords),np.imag(self.baseCords)),radius=length,edgecolor='g', facecolor='none')
-        #ax.add_patch(circle)      #uncomment to add the stupid circles
+        if self.showcircles:
+            circle=patches.Circle((np.real(self.baseCords),np.imag(self.baseCords)),radius=length,edgecolor='g', facecolor='none')
+            ax.add_patch(circle)      #uncomment to add the stupid circles
         if self.is_last:
             
             if len(self.positions) > 1:
