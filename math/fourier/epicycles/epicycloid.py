@@ -2,7 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from vector import Vector  
-from fourierTransform import ft,dft
+from fourierTransform import dft
+from dealwithpoints import read_points_from_file
 
 class EpicycloidAnimator:
     def __init__(self, num_vectors, total_time):
@@ -15,9 +16,7 @@ class EpicycloidAnimator:
         self.fig, self.ax = plt.subplots()  # Create figure and axes
         
     def init_vectors(self):
-        y=[]
-        for z in range(100):
-            y.append(ft(z))
+        y=read_points_from_file(r"D:\fascinating-math\math\fourier\epicycles\output\cords.txt")
         coeffs=[]
         step_size=1/self.num_vectors
         frequency_numbers = np.arange(-10, 10+step_size, step_size)[::-1]  #reversed because max frequency will have max amplitude
@@ -36,8 +35,8 @@ class EpicycloidAnimator:
     def update(self, frame):
         self.ax.clear()  # Clear the axes
         self.ax.set_aspect('equal')
-        self.ax.set_xlim(-25,25)
-        self.ax.set_ylim(-25,25)
+        self.ax.set_xlim(-10,10)
+        self.ax.set_ylim(-10,10)
         self.ax.set_xlabel('Real')
         self.ax.set_ylabel('Imaginary')
         self.ax.set_title('Chained Vectors in Complex Plane')
@@ -55,7 +54,7 @@ class EpicycloidAnimator:
         self.init_vectors()
 
         # Animate the plot
-        ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=50)
+        ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=500)
 
         plt.show()
 

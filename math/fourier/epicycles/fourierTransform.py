@@ -10,7 +10,7 @@ for z in range(100):
 
 def dft(frequency, y):
     sum = 0
-    t_values = np.linspace(-np.pi, np.pi, num=len(y)-1, endpoint=False)  # Generate t values
+    t_values = np.linspace(0,1, num=len(y)-1, endpoint=False)  # Generate t values
     omega = 2 * np.pi * frequency
     i=0        #to extract values at the ith position in y
     for t in t_values:
