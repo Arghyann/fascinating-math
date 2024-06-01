@@ -10,7 +10,7 @@ class EpicycloidAnimator:
         self.num_vectors = num_vectors
         self.total_time = total_time
         
-        self.time_step = total_time / 2*np.pi/num_vectors
+        self.time_step =1                  #very very important for animation
         self.num_frames=total_time/self.time_step
         self.vectors = []
         self.fig, self.ax = plt.subplots()  # Create figure and axes
@@ -18,11 +18,13 @@ class EpicycloidAnimator:
     def init_vectors(self):
         y=read_points_from_file(r"D:\fascinating-math\math\fourier\epicycles\output\cords.txt")
         coeffs=[]
-        step_size=1/self.num_vectors
-        frequency_numbers = np.arange(-10, 10+step_size, step_size)[::-1]  #reversed because max frequency will have max amplitude
+        self.time_step=1/len(y)
+        self.num_frames=self.total_time/self.time_step
+        frequency_numbers = np.arange(-self.num_vectors/2,self.num_vectors/2,1)  
 
         for frequencyNumber in frequency_numbers:
             coeffs.append(dft(frequency=frequencyNumber,y=y))
+        
         
         
         for i in range(self.num_vectors-1):
@@ -35,8 +37,8 @@ class EpicycloidAnimator:
     def update(self, frame):
         self.ax.clear()  # Clear the axes
         self.ax.set_aspect('equal')
-        self.ax.set_xlim(-10,10)
-        self.ax.set_ylim(-10,10)
+        self.ax.set_xlim(-1000,1000)
+        self.ax.set_ylim(-1000,1000)
         self.ax.set_xlabel('Real')
         self.ax.set_ylabel('Imaginary')
         self.ax.set_title('Chained Vectors in Complex Plane')
@@ -44,7 +46,9 @@ class EpicycloidAnimator:
 
         # Calculate time in seconds
         t = frame * self.time_step
-
+        #print(t)
+        #print(self.time_step)
+        #print(frame)
         # Update and draw each vector
         for vec in self.vectors:
             vec.drawVector(t, self.ax)
@@ -52,9 +56,9 @@ class EpicycloidAnimator:
     def animate(self):
         # Initialize vectors
         self.init_vectors()
-
+        print(self.num_frames)
         # Animate the plot
-        ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=500)
+        ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=5)
 
         plt.show()
 

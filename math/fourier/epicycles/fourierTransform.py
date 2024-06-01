@@ -1,11 +1,5 @@
 import numpy as np
 
-def ft(x):
-    
-    return np.exp(1j*x)
-y=[]
-for z in range(100):
-    y.append(ft(z))
 
 
 def dft(frequency, y):
@@ -19,10 +13,10 @@ def dft(frequency, y):
         i+=1
 
     return sum/2*np.pi
-coeffs=[]
+'''coeffs=[]
 frequency_numbers = np.arange(-10, 10.5, 0.5)
 
 for frequencyNumber in frequency_numbers:
-    coeffs.append(dft(frequency=frequencyNumber,y=y))
+    coeffs.append(dft(frequency=frequencyNumber,y=y))'''
 
 

@@ -1,3 +1,4 @@
+import numpy as np
 def read_points_from_file(file_path):
     
    
@@ -13,11 +14,8 @@ def read_points_from_file(file_path):
         # Split the line by comma to get x and y coordinates
         x, y = map(int, line.strip().split(','))
         
-        points.append([x, y])
+        points.append(np.complex128(complex(x, y)))
 
     return points
 
 
-'''file_path = r'D:\fascinating-math\math\fourier\epicycles\output\cords.txt'  # Path to your file
-points = read_points_from_file(file_path)
-print(points)'''
