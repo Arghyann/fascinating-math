@@ -4,19 +4,25 @@ import matplotlib.animation as animation
 from vector import Vector  
 from fourierTransform import dft
 from dealwithpoints import read_points_from_file
+from svgtopoints import extract_points_from_svg
+import os
 
 class EpicycloidAnimator:
-    def __init__(self, num_vectors, total_time):
+    def __init__(self, num_vectors, total_time,path):
         self.num_vectors = num_vectors
         self.total_time = total_time
-        
+        self.path=path
         self.time_step =1                  #very very important for animation
         self.num_frames=total_time/self.time_step
         self.vectors = []
         self.fig, self.ax = plt.subplots()  # Create figure and axes
         
     def init_vectors(self):
-        y=read_points_from_file(r"D:\fascinating-math\math\fourier\epicycles\output\cords.txt",1000)
+        _, file_extension = os.path.splitext(self.path)
+        if file_extension.lower() == '.svg':
+            y=extract_points_from_svg(self.path)
+        elif file_extension.lower() == '.txt':
+            y=read_points_from_file(self.path,814)
         print(y)
         coeffs=[]
         self.time_step=1/len(y)
@@ -63,7 +69,7 @@ class EpicycloidAnimator:
         
         # Animate the plot
         ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=50)
-        
+        #edit interval to make animation go faster
         plt.show()
 
 
