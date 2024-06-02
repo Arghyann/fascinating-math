@@ -20,7 +20,8 @@ class Vector:
         if self.previous is not None: self.baseCords=self.previous.head_position
         cords=self.baseCords+self.coeff*np.exp(1j*self.omega*t)
         self.head_position=cords          #updates head position every time fore better efficiency 
-        self.positions.append(cords)
+        if self.is_last:
+            self.positions.append(cords)
         return cords
     
     def drawVector(self, t, ax):
@@ -37,7 +38,8 @@ class Vector:
             circle=patches.Circle((np.real(self.baseCords),np.imag(self.baseCords)),radius=length,edgecolor='g', facecolor='none')
             ax.add_patch(circle)      #uncomment to add the stupid circles
         if self.is_last:
-            
+            if t==0:
+                self.positions.clear()
             if len(self.positions) > 1:
                 trajectory = np.array(self.positions)
                 ax.plot(np.real(trajectory), np.imag(trajectory), color='blue', linestyle='-')  # Draw a solid line
