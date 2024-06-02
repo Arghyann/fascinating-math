@@ -10,3 +10,8 @@ $$
 F(\omega) = \int_{-\infty}^{\infty} f(t) \cdot e^{-i\omega t} \ dt
 $$
 
+    This seemingly daunting equation produces wonderfully intricate results out a bunch of rotating vectors. Although very intimidating, 3Blue1Brown has a wonderfully explained video about the subject. Infact the inspiration of this whole thing comes from him. 10/10 highly recommend. 
+
+    Working with the fourier transform is kind of like contacting your ex again. You'll never know what you're going to get. Sometimes there are these wonderful shapes that make you believe that yes maybe there is a purpose for you, but other times it's just a few jagged lines and a crashed program making you question if it was ever the simple equation you once knew and loved very dearly. 
+    
+    Despite all the pain, suffering and the descent into the deep abyss of nihilism it has caused; the fourier transform is truly a wonderful mathematical tool that can transform a jumbled mess of signals into pure waves. I wish there was a fourier transform for people.
