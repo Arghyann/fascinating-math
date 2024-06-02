@@ -18,7 +18,7 @@ $$
 
 Both Julia and Mandelbrot sets come from the same equation. Julia sets are obtained by considering a fixed $c$ and letting the initial value of $z$ vary over the plane, whereas Mandelbrot sets have $0$ as the initial value of $z$ and $c$ roams all over the plane. In fact, there exists an entire family of Julia sets for every region in the Mandelbrot set. I highly recommend playing around with this and finding your own cool-looking shapes.   
 
-**The complex fourier transform.**   
+**The Complex Fourier transform.**   
 The fourier transform. If I had a penny for everytime I had a sleepless night thinking of why this very code won't work, I'd have two pennies.  
 
 $$
