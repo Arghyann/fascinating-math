@@ -23,7 +23,7 @@ $$
 F(\omega) = \int_{-\infty}^{\infty} f(t) \cdot e^{-i\omega t} \ dt
 $$
 
-This seemingly daunting equation produces wonderfully intricate results out of a bunch of rotating vectors. Although very intimidating, @3b1b has a wonderfully explained video on Youtube about the subject that breaks it down. Infact the inspiration of this whole thing comes from him. 10/10 highly recommend. 
+This seemingly daunting equation produces wonderfully intricate results out of a bunch of rotating vectors. Although very intimidating, [@3b1b](https://github.com/3b1b) has a wonderfully explained video on Youtube about the subject that breaks it down. Infact the inspiration of this whole thing comes from him. 10/10 highly recommend. 
 
 Working with the fourier transform is kind of like contacting your ex again. You'll never know what you're going to get. Sometimes there are these wonderful shapes that make you believe that yes maybe there is a purpose for you, but other times it's just a few jagged lines and a crashed program making you question if it was ever the simple equation you once knew and loved very dearly. 
     
