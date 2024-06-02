@@ -96,7 +96,7 @@ class EpicycloidAnimator:
         # Initialize vectors
         self.init_vectors()
         print(self.num_frames)
-        print(self.count)
+        
         
         # Animate the plot
         ani = animation.FuncAnimation(self.fig, self.update, frames=np.arange(0, self.num_frames), interval=5)

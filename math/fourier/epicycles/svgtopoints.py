@@ -13,7 +13,7 @@ def extract_points_from_svg(svg_file_path, num_points=500):
             t = i / num_points
             point = path.point(t)
             x, y = np.real(point), -np.imag(point)  
-            points.append(np.complex128(complex(x, y))/500)
+            points.append(np.complex128(complex(x, y))/2)
 
     return points
 
