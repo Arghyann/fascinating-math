@@ -15,6 +15,7 @@ The Mandelbrot and the Julia sets are almost the poster child of math and need n
 $$
 z_{n+1} = z_n^2 + c
 $$
+
 Both Julia and Mandelbrot sets come from the same equation. Julia sets are obtained by considering a fixed $c$ and letting the initial value of $z$ vary over the plane, whereas Mandelbrot sets have $0$ as the initial value of $z$ and $c$ roams all over the plane. In fact, there exists an entire family of Julia sets for every region in the Mandelbrot set. I highly recommend playing around with this and finding your own cool-looking shapes.   
 
 **The complex fourier transform.**   
