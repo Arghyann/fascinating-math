@@ -20,7 +20,7 @@ $$
 The fourier transform. If I had a penny for everytime I had a sleepless night thinking of why this very code won't work, I'd have two pennies.  
 
 $$
-F(\omega) = \int_{-\infty}^{\infty} f(t) \cdot e^{-i\omega t} \ dt
+F(\omega) = \int_{0}^{1} f(t) \cdot e^{-i\omega t} \ dt
 $$
 
 This seemingly daunting equation produces wonderfully intricate results out of a bunch of rotating vectors. Although very intimidating, [@3b1b](https://github.com/3b1b) has a wonderfully explained video on Youtube about the subject that breaks it down. Infact the inspiration of this whole thing comes from him. 10/10 highly recommend. 
