@@ -7,6 +7,6 @@ Bunch of projects that I found interesting
 3) The fourier transform. If I had a penny for everytime I had a sleepless night thinking of why this very code won't work, I'd have two pennies. 
 
 $$
-F(\omega) = \int_{-\infty}^{\infty} f(t) \cdot e^{-i\omega t} \, dt
+F(\omega) = \int_{-\infty}^{\infty} f(t) \cdot e^{-i\omega t} \ dt
 $$
 
