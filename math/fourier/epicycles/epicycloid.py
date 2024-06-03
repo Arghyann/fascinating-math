@@ -9,7 +9,7 @@ import os
 import time
 from arrangeVectors import arrangeVectors
 class EpicycloidAnimator:
-    def __init__(self, num_vectors, total_time,path,show_circles):
+    def __init__(self, num_vectors, total_time,path,show_circles,zoom):
         self.num_vectors = num_vectors
         self.total_time = total_time
         self.path=path
@@ -20,6 +20,7 @@ class EpicycloidAnimator:
         self.max_zoom=1
         self.showCircles=show_circles
         self.count=0                          #number of times the animation has occured
+        self.zoom=zoom
     def init_vectors(self):
         _, file_extension = os.path.splitext(self.path)
         if file_extension.lower() == '.svg':
@@ -74,7 +75,7 @@ class EpicycloidAnimator:
         for vec in self.vectors:
             vec.drawVector(t, self.ax)
             end_pos=vec.getHeadPosition(t)
-        if self.count==1:
+        if self.count==1 and self.zoom:
             if self.zoom_start_frame <= frame <= self.zoom_end_frame:
                 zoom_factor = (frame - self.zoom_start_frame) / (self.zoom_end_frame - self.zoom_start_frame)  #fraction to increase zoom gradually
                 zoom_level = self.initial_xlim - (self.initial_xlim -self.max_zoom) * zoom_factor   #max zoom is one here

@@ -12,7 +12,7 @@ def dft(frequency, y):
         sum += y[i] * np.exp(-1j * omega * t)
         i+=1
 
-    return sum/2*np.pi/400,frequency                  #use this to scale the image up or down
+    return sum/400,frequency                  #use this to scale the image up or down
 '''coeffs=[]
 frequency_numbers = np.arange(-10, 10.5, 0.5)
 
