@@ -7,13 +7,12 @@ $$
 x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
 $$
 
-Newton's plan was to approximate the roots of an nth degree polynomial. Remember the quadratic fomula from school? He was trying to do somehthing similar but for a general polynomial. Why approximate, when anything but the exact solution is sacrilegious in Mathematics, you ask? Well, this really smart Norweigian guy proved that for any polynomial with a degree greater than four, it is impossible to write a general solution in terms of the functions that we typically use. So, Newton set forth with nothing but the power of Calculus(which he came up with). That's right, he had an idea and he did something about it, because he had a little something of what they call _ambition_. So what have you done with your life?   
+Newton's plan was to approximate the roots of an nth degree polynomial. Remember the quadratic fomula from school? He was trying to do somehthing similar but for a general polynomial. Why approximate, when anything but the exact solution is considered sacrilegious in Mathematics, you ask? Well, this really smart Norweigian guy proved that for any polynomial with a degree greater than four, it is impossible to write a general solution in terms of the functions that we typically use. So, Newton set forth with nothing but the power of Calculus(which he came up with). That's right, he had an idea and he did something about it, because he had a little something of what they call _ambition_. So what have you done with your life?   
    
 Newton had no idea about these fractals when he came up with the equation. Like most great things, the nuances only really surfaced after his death. Gives me hope for all the poems I've been working on.   
 
 ## Mandelbrot and Julia sets.  
-The Mandelbrot and the Julia sets are almost the poster child of math and need no introduction. The fascinating part of the julia sets is that they predate computers. I can almost imagine nerds painfully checking if a point in space blows up or not on a Saturday night. With the insane computation power we have at our fingertips, you'd think we'd know why the chicken crossed the road but nope, no progress on that one. Yet another win for the chickens.
-
+The Mandelbrot and the Julia sets are almost the poster child of math and need no introduction. The fascinating part of the Julia sets is that they predate computers. I can almost imagine nerds painfully checking if a point in space blows up or not on a Saturday night. But luckily for us nerds in the era of computers, we don't have to do that anymore. We can just ask Python to iterate over a million points and it will do it without whining about it. Of course, God forbid you forget a space. Then Python will get mad at you, and I respect that. Setting boundaries is always important.   
 $$
 z_{n+1} = z_n^2 + c
 $$
