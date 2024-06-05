@@ -63,8 +63,8 @@ class EpicycloidAnimator:
         self.ax.set_xlabel('Real')
         self.ax.set_ylabel('Imaginary')
         self.ax.set_title('Chained Vectors in the Complex Plane')
-        self.initial_xlim=500
-        self.initial_ylim=500
+        self.initial_xlim=1000
+        self.initial_ylim=1000
         
         # Calculate time in seconds
         t = frame * self.time_step

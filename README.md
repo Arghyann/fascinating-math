@@ -7,6 +7,8 @@ $$
 x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
 $$
 
+Newton's plan was to approximate the roots of an nth degree polynomial. Remember the quadratic fomula from school? He was trying to do somehthing similar but for a general polynomial. Why approximate, when anything but the exact solution is sacrilegious in Mathematics, you ask? Well, this really smart Norweigian guy proved that for any polynomial with a degree greater than four, it was impossible to write a general solution in terms of the functions that we typically use. So, Newton set forth with nothing but the power of Calculus(which he came up with). That's right, he had an idea and he did something about it, because he had something they call _ambition_. So what have you done with your life?   
+   
 Newtons had no idea about these fractals when he came up with the equation. Like most great things, the nuances only really surfaced after his death. Gives me hope for all the poems I've been working on.   
 
 **Mandelbrot and Julia sets.**  
