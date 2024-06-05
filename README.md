@@ -13,6 +13,7 @@ Newton had no idea about these fractals when he came up with the equation. Like 
 
 ## Mandelbrot and Julia sets.  
 The Mandelbrot and the Julia sets are almost the poster child of math and need no introduction. The fascinating part of the Julia sets is that they predate computers. I can almost imagine nerds painfully checking if a point in space blows up or not on a Saturday night. But luckily for us nerds in the era of computers, we don't have to do that anymore. We can just ask Python to iterate over a million points and it will do it without whining about it. Of course, God forbid you forget a space. Then Python will get mad at you, and I respect that. Setting boundaries is always important.   
+
 $$
 z_{n+1} = z_n^2 + c
 $$
