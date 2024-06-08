@@ -1,7 +1,7 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
-def simulateGoodReview(probability=0.1,numberOfevents=100):
+def simulateGoodReview(probability=0.5,numberOfevents=100):
     array=[]
     for i in range(numberOfevents):
         if random.random()<=probability:
