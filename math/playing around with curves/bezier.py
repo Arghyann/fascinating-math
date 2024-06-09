@@ -39,7 +39,7 @@ def main():
                 mouse_pos = np.array(pygame.mouse.get_pos())
                 # Check if mouse is within any of the circles
                 for i in range(4):
-                    if np.linalg.norm(c[i] - mouse_pos) <= 5:
+                    if np.linalg.norm(c[i] - mouse_pos) <= 5:      #change to elif if you want the points to not overlap but i like it this way
                         print(f"Mouse is in circle {i + 1}")
                         dragging[i] = True
             elif event.type == pygame.MOUSEMOTION:
