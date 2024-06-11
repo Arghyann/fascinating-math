@@ -4,3 +4,5 @@
 5)fourier transform to draw stuff
 6) completely understand the transform
 7) bezier curves
+8) conways game of life 
+9) boids 
