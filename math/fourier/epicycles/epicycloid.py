@@ -7,7 +7,7 @@ from dealwithpoints import read_points_from_file
 from svgtopoints import extract_points_from_svg
 import os
 import time
-from arrangeVectors import arrangeVectors
+from arrangeVectors import arrangeVectors, findmaxXandY
 class EpicycloidAnimator:
     def __init__(self, num_vectors, total_time,path,show_circles,zoom):
         self.num_vectors = num_vectors
@@ -21,6 +21,7 @@ class EpicycloidAnimator:
         self.showCircles=show_circles
         self.count=0                          #number of times the animation has occured
         self.zoom=zoom
+        self.maxValues=(0,0)
     def init_vectors(self):
         _, file_extension = os.path.splitext(self.path)
         if file_extension.lower() == '.svg':
@@ -28,7 +29,7 @@ class EpicycloidAnimator:
         elif file_extension.lower() == '.txt':
             y=read_points_from_file(self.path,814)   #change image height here
         print(y)
-        coeffs=[]
+        coeffs=[]   #why 2d array what is the second element
         self.time_step=1/len(y)
         self.num_frames=self.total_time/self.time_step
         self.zoom_start_frame= self.num_frames//4            #most important things initilaised here
@@ -38,7 +39,7 @@ class EpicycloidAnimator:
         for frequencyNumber in frequency_numbers:
             coeffs.append(dft(frequency=frequencyNumber,y=y))
         arrangeVectors(coeffs)
-        print(coeffs)
+        print("coeffs: ",coeffs)
         del(frequency_numbers)
         self.centreOfMass=np.complex128(coeffs[0][0])
         
@@ -49,6 +50,7 @@ class EpicycloidAnimator:
             v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[i-1] if i!=0 else None,show_circles=self.showCircles)
             print(v.is_last)
             self.vectors.append(v)
+        self.maxValues=findmaxXandY(coeffs)
         print(self.centreOfMass)
     def update(self, frame):
         if frame == 0:
@@ -63,8 +65,8 @@ class EpicycloidAnimator:
         self.ax.set_xlabel('Real')
         self.ax.set_ylabel('Imaginary')
         self.ax.set_title('Chained Vectors in the Complex Plane')
-        self.initial_xlim=1000
-        self.initial_ylim=1000
+        self.initial_xlim=self.maxValues[0]+100
+        self.initial_ylim=self.maxValues[1]+100
         
         # Calculate time in seconds
         t = frame * self.time_step
