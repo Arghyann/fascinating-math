@@ -1,19 +1,20 @@
-import librosa
-import numpy as np
 import matplotlib.pyplot as plt
-from fastfourierTransform import fourier
+import numpy as np
+import librosa
 
-# Load the audio signal
-audio_file = r'D:\projects\python\fascinating-math\math\fourier\sound\file_example_WAV_1MG.wav'
-y, sr = librosa.load(audio_file, sr=None)  # y is the audio signal, sr is the original sampling rate
 
-#N can be thought of as sr*t
-magnitudes=fourier(y)
-frequencies= [2*np.pi*n for n in range(-len(y)//2,len(y))]
+audio_file=r"D:\projects\python\fascinating-math\math\fourier\sound\file_example_WAV_1MG.wav"
+y, sr = librosa.load(audio_file, sr=None)
+N=len(y)
 
-plt.plot(frequencies, np.abs(magnitudes))
+amplitudes=np.fft.fft(y)
+frequencies=np.fft.fftfreq(N,d=1/sr)
+#getting the top five frequencies
+
+print(amplitudes)
+plt.plot(frequencies, np.abs(amplitudes))
 plt.title('Magnitude Spectrum')
-plt.xlabel('Frequency (radians/sample)')
+plt.xlabel('Frequency (Hz)')
 plt.ylabel('Magnitude')
 plt.grid(True)
 plt.show()
