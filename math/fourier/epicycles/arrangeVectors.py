@@ -6,7 +6,7 @@ def arrangeVectors(list):
 #sort the vectors however you like here
 
 def findmaxXandY(a):
-    max_x = max(abs(np.real(pair[0])) for pair in a)
-    max_abs_y = max(abs(np.imag(pair[0])) for pair in a)
+    max_x = max(abs(np.real(pair)) for pair in a)
+    max_abs_y = max(abs(np.imag(pair)) for pair in a)
 
     return max_x, max_abs_y

@@ -29,7 +29,7 @@ class EpicycloidAnimator:
         elif file_extension.lower() == '.txt':
             y=read_points_from_file(self.path,814)   #change image height here
         print(y)
-        coeffs=[]   #why 2d array what is the second element
+        coeffs=[]   #omega is the second element
         self.time_step=1/len(y)
         self.num_frames=self.total_time/self.time_step
         self.zoom_start_frame= self.num_frames//4            #most important things initilaised here
@@ -50,7 +50,7 @@ class EpicycloidAnimator:
             v = Vector(coeff=coeff, omega=omega, is_last=is_last, previous=self.vectors[i-1] if i!=0 else None,show_circles=self.showCircles)
             print(v.is_last)
             self.vectors.append(v)
-        self.maxValues=findmaxXandY(coeffs)
+        self.maxValues=findmaxXandY(y)
         print(self.centreOfMass)
     def update(self, frame):
         if frame == 0:
@@ -65,8 +65,8 @@ class EpicycloidAnimator:
         self.ax.set_xlabel('Real')
         self.ax.set_ylabel('Imaginary')
         self.ax.set_title('Chained Vectors in the Complex Plane')
-        self.initial_xlim=self.maxValues[0]+100
-        self.initial_ylim=self.maxValues[1]+100
+        self.initial_xlim=self.maxValues[0]
+        self.initial_ylim=self.maxValues[1]
         
         # Calculate time in seconds
         t = frame * self.time_step
