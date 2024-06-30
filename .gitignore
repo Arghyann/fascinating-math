@@ -3,3 +3,4 @@ math/fourier/epicycles/output
 *.JPG
 math/fourier/epicycles/__pycache__
 math/probability/tempCodeRunnerFile.py
+env/
