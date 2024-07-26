@@ -1,11 +1,16 @@
-from pydub import AudioSegment
-import os
+from moviepy.editor import AudioFileClip
 
-# Set the path to the ffmpeg executable
-os.environ["FFMPEG_BINARY"] = r"C:\libraries\ffmpeg-master-latest-win64-gpl\bin\ffmpeg.exe"
-
-# Now you can use pydub to load your mp3 file
+# Path to your MP3 file
 mp3_path = r"D:\projects\python\fascinating-math\fourier\musical note extractor\fur elise.mp3"
-audio = AudioSegment.from_mp3(mp3_path)
 
-print("Audio loaded successfully!")
+# Load the MP3 file
+audio = AudioFileClip(mp3_path)
+
+# Extract audio properties
+duration = audio.duration
+print(f"Duration: {duration} seconds")
+
+# Get audio samples
+samples = audio.to_soundarray()
+
+print(f"Samples: {samples[:10]}")  # Display the first 10 samples
