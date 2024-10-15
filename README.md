@@ -1,5 +1,8 @@
 # fascinating-math
 
+#Why?
+I love making projects that are never gonna help me academically. This whole thing started out as a bet I made with a friend and I've thoroughly enjoyed working on this whole thing so far. This is me trying to oversimplify the math that went into it. Have fun! 
+
 ## Newton's fractals.
 
 Newton's fractals show how numbers in the complex plane behave erratically(kind of like your mom) and small changes in the input spit out dramatically different results. Like if you start with an initial point one millionth of a centimetre away, it tends to a totally different root. It's surreal how chaos comes out of seeminlgy mundane computations.
