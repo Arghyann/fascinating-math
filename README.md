@@ -6,7 +6,7 @@ I love making projects that are never gonna help me academically. This whole thi
 
 ## Newton's fractals.
 
-Newton's fractals show how numbers in the complex plane behave erratically(kind of like your mom) and small changes in the input spit out dramatically different results. Like if you start with an initial point one millionth of a centimetre away, it tends to a totally different root. It's surreal how chaos comes out of seeminlgy mundane computations.
+Newton's fractals show how numbers in the complex plane behave erratically(kind of like your mom) and small changes in the input spit out dramatically different results. Like if you start with an initial point one millionth of a centimetre away, the result turns out to be dramatically different . It's surreal how chaos comes out of seeminlgy mundane computations.
 
 $$
 x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
