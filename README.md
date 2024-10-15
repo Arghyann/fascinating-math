@@ -1,6 +1,7 @@
 # fascinating-math
 
-#Why?
+## Why?
+
 I love making projects that are never gonna help me academically. This whole thing started out as a bet I made with a friend and I've thoroughly enjoyed working on this whole thing so far. This is me trying to oversimplify the math that went into it. Have fun! 
 
 ## Newton's fractals.
