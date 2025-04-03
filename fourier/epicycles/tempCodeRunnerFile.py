@@ -1,1 +1,1 @@
-D:\projects\python\fascinating-math\math\fourier\epicycles\output\texts\test1.txt
+1 / epicycles.num_frames

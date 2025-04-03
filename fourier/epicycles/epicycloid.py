@@ -22,6 +22,7 @@ class EpicycloidAnimator:
         self.count=0                          #number of times the animation has occured
         self.zoom=zoom
         self.maxValues=(0,0)
+        self.centreOfMass=0+0j
     def init_vectors(self):
         _, file_extension = os.path.splitext(self.path)
         if file_extension.lower() == '.svg':
@@ -41,7 +42,7 @@ class EpicycloidAnimator:
         arrangeVectors(coeffs)
         print("coeffs: ",coeffs)
         del(frequency_numbers)
-        self.centreOfMass=np.complex128(coeffs[0][0])
+        self.centreOfMass=np.complex128(coeffs[0][0])  #end of the stationary vector(3b1b video explains it )
         
         for i in range(self.num_vectors):
             coeff =coeffs[i][0]
