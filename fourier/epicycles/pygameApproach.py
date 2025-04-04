@@ -7,15 +7,16 @@ from svgtopoints import extract_points_from_svg
 from arrangeVectors import arrangeVectors, findmaxXandY
 from epicycloid import EpicycloidAnimator
 
-path = r"fourier\epicycles\output\svgs\fourier.svg"
-epicycles = EpicycloidAnimator(num_vectors=50, total_time=1, path=path, show_circles=False, zoom=True)
+path = r"fourier\epicycles\output\svgs\dragon.svg"
+epicycles = EpicycloidAnimator(num_vectors=100, total_time=1, path=path, show_circles=False, zoom=True)
 epicycles.init_vectors()
 for vector in epicycles.vectors:
-    vector.omega*=0.5
+    vector.omega*=0.2
+    
 
 
 pygame.init()
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 800*2, 600*1.5
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Epicycloid Animation")
 clock = pygame.time.Clock()
